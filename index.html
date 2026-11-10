@@ -93,6 +93,9 @@ nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 94%
 .btn-sm{min-height:48px;padding:10px 16px;font-size:.94rem}
 .btn-quiet{background:transparent;color:var(--ink-soft);border-color:var(--line)}
 .btn-quiet:hover{color:var(--ink);border-color:var(--amber)}
+.mic-status{margin:14px 0 0;color:var(--ink-soft)}
+.mic-text{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;white-space:pre-wrap}
+.mic-note{margin:10px 0 0;font-size:.92rem;color:var(--ink-soft)}
 .quick-exit-btn{background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-family:"Alegreya Sans",sans-serif;font-size:.88rem;font-weight:600;border-radius:999px;padding:10px 14px;min-height:48px;cursor:pointer}
 .quick-exit-btn:hover{border-color:var(--clay);color:var(--clay)}
 #quick-exit-float{position:fixed;right:14px;bottom:14px;z-index:90;background:color-mix(in srgb, var(--card) 92%, transparent);backdrop-filter:blur(8px);border:1px solid var(--line);color:var(--ink-soft);font-family:"Alegreya Sans",sans-serif;font-size:.88rem;font-weight:600;border-radius:999px;padding:12px 16px;min-height:52px;cursor:pointer;box-shadow:var(--shadow)}
@@ -661,6 +664,16 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
     <div style="margin-top:22px">
       <a class="btn btn-moss" href="https://docs.google.com/forms/d/e/1FAIpQLSdHghwHvInRbtngmnQUnIUQFlt2JNddrDBhtaMVzFc5n2uZAA/viewform" target="_blank" rel="noopener">Share a recipe or idea</a>
     </div>
+    <div style="margin-top:14px">
+      <button class="btn btn-ghost" id="mic-btn" type="button">🎙 Speak it instead</button>
+      <p id="mic-status" class="mic-status" aria-live="polite"></p>
+      <div id="mic-result" hidden>
+        <p class="mic-label">Here is what you said — copy it into the form:</p>
+        <p id="mic-text" class="mic-text"></p>
+        <button class="btn btn-moss btn-sm" id="mic-copy" type="button">Copy the text</button>
+      </div>
+      <p class="mic-note">Your voice is only sent for transcription when you tap stop — nothing leaves your device before that.</p>
+    </div>
   </div>
 </section>
 
@@ -1185,6 +1198,83 @@ document.addEventListener('keydown', function(e){
 });
 
 showVerse();
+})();
+</script>
+<script>
+(function(){
+  var WORKER_URL = "https://open-grove-transcribe.gkeefers.workers.dev/";
+  var btn = document.getElementById("mic-btn");
+  var statusEl = document.getElementById("mic-status");
+  var resultEl = document.getElementById("mic-result");
+  var textEl = document.getElementById("mic-text");
+  var copyBtn = document.getElementById("mic-copy");
+  if(!btn) return;
+  var recorder = null, chunks = [], stream = null, recording = false;
+  function setStatus(msg){ statusEl.textContent = msg; }
+  function pickMime(){
+    var types = ["audio/webm;codecs=opus","audio/webm","audio/mp4"];
+    for(var i=0;i<types.length;i++){ if(window.MediaRecorder && MediaRecorder.isTypeSupported(types[i])) return types[i]; }
+    return "";
+  }
+  async function start(){
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      setStatus("This browser cannot record audio. Type your recipe into the form instead.");
+      return;
+    }
+    try{
+      stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    }catch(e){
+      setStatus("The microphone was not allowed. You can allow it in your browser settings and try again, or type your recipe into the form.");
+      return;
+    }
+    chunks = [];
+    var mime = pickMime();
+    try{ recorder = mime ? new MediaRecorder(stream, {mimeType:mime}) : new MediaRecorder(stream); }
+    catch(e){ setStatus("Recording did not start on this device. Type your recipe into the form instead."); stream.getTracks().forEach(function(t){t.stop();}); return; }
+    recorder.ondataavailable = function(e){ if(e.data && e.data.size) chunks.push(e.data); };
+    recorder.onstop = send;
+    recorder.start();
+    recording = true;
+    btn.textContent = "■ Stop recording";
+    setStatus("Listening — speak your recipe or idea, then tap stop.");
+    resultEl.hidden = true;
+  }
+  function stop(){
+    recording = false;
+    btn.textContent = "🎙 Speak it instead";
+    setStatus("Writing down what you said…");
+    try{ recorder.stop(); }catch(e){ setStatus("The recording did not save. Please try again."); }
+    if(stream){ stream.getTracks().forEach(function(t){t.stop();}); stream = null; }
+  }
+  async function send(){
+    var blob = new Blob(chunks, {type: recorder.mimeType || "audio/webm"});
+    if(!blob.size){ setStatus("Nothing was recorded. Tap the button and try again."); return; }
+    try{
+      var res = await fetch(WORKER_URL + "?model=nova-2&diarize=false", {method:"POST", headers:{"Content-Type": blob.type || "audio/webm"}, body: blob});
+      var data = await res.json();
+      var alt = data && data.results && data.results.channels && data.results.channels[0] && data.results.channels[0].alternatives && data.results.channels[0].alternatives[0];
+      var transcript = alt ? alt.transcript : "";
+      if(!transcript){ setStatus("I could not make out any words. Please try again, speaking a little closer to the microphone."); return; }
+      textEl.textContent = transcript;
+      resultEl.hidden = false;
+      copyBtn.textContent = "Copy the text";
+      setStatus("Done — check the words below, then open the form and paste them in.");
+      resultEl.scrollIntoView({behavior:"smooth", block:"nearest"});
+    }catch(e){
+      setStatus("Transcription did not work just now. Please try again, or type your recipe into the form.");
+    }
+  }
+  btn.addEventListener("click", function(){ if(recording){ stop(); } else { start(); } });
+  copyBtn.addEventListener("click", function(){
+    var text = textEl.textContent;
+    function done(){ copyBtn.textContent = "Copied"; }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, function(){ copyBtn.textContent = "Copy failed — select the text by hand"; }); }
+    else{
+      var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand("copy"); done(); }catch(e){ copyBtn.textContent = "Copy failed — select the text by hand"; }
+      document.body.removeChild(ta);
+    }
+  });
 })();
 </script>
 </body>
