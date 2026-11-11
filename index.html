@@ -80,6 +80,21 @@ nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 94%
 .nav-links a{color:var(--ink-soft);text-decoration:none;padding:12px 12px;border-radius:999px;display:inline-flex;align-items:center}
 .nav-links a:hover{background:var(--sage);color:var(--ink)}
 .nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nav-toggle{display:none}
+.nav-menu{display:flex;align-items:center;gap:14px;margin-left:auto}
+@media (max-width:840px){
+  .nav-in{gap:8px;padding:6px 14px}
+  .nav-brand{font-size:1.15rem}
+  .nav-toggle{display:inline-flex;align-items:center;gap:6px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:10px 14px;min-height:48px;font-family:"Alegreya Sans",sans-serif;font-size:.94rem;font-weight:700;cursor:pointer}
+  .nav-toggle:hover{border-color:var(--amber);color:var(--amber)}
+  .nav-menu{display:none;width:100%;margin-left:0;flex-direction:column;align-items:stretch;gap:0}
+  nav.open .nav-menu{display:flex;border-top:1px solid var(--line);padding:8px 0 12px}
+  .nav-links{margin-left:0;flex-direction:column;align-items:stretch;gap:0}
+  .nav-links a{padding:12px 6px;border-radius:8px}
+  .nav-actions{margin-top:10px}
+  .hero img{height:min(52vh,420px)}
+  .hero-text{padding:20px 0 28px}
+}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 22px;min-height:52px;font-weight:700;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:"Alegreya Sans",sans-serif;font-size:1rem;line-height:1.2;text-align:center}
 .btn-gold{background:#c07f1a;color:#1c1404}
 .btn-gold:hover{background:#d8912a}
@@ -320,17 +335,20 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
 <nav aria-label="Site">
   <div class="nav-in">
     <a class="nav-brand" href="#top">The <span>Open</span> Grove</a>
-    <div class="nav-links">
-      <a href="#wheel">Wheel of the Year</a>
-      <a href="#paths">Many Paths</a>
-      <a href="#wisdom">Wisdom &amp; Runes</a>
-      <a href="#practice">Begin Practice</a>
-      <a href="#keepsakes">Keepsakes</a>
-      <a href="#shop">Shop</a>
-    </div>
-    <div class="nav-actions">
-      <button class="btn btn-line btn-sm" id="focus-open" type="button">Focus space</button>
-      <button class="quick-exit-btn" id="quick-exit" type="button" aria-label="Quick exit — leave this site immediately">Quick exit</button>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">&#9776; Menu</button>
+    <button class="quick-exit-btn" id="quick-exit" type="button" aria-label="Quick exit — leave this site immediately">Quick exit</button>
+    <div class="nav-menu" id="nav-menu">
+      <div class="nav-links">
+        <a href="#wheel">Wheel of the Year</a>
+        <a href="#paths">Many Paths</a>
+        <a href="#wisdom">Wisdom &amp; Runes</a>
+        <a href="#practice">Begin Practice</a>
+        <a href="#keepsakes">Keepsakes</a>
+        <a href="#shop">Shop</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-line btn-sm" id="focus-open" type="button">Focus space</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -1319,6 +1337,24 @@ showVerse();
       document.body.removeChild(ta);
     }
   });
+})();
+</script>
+<script>
+(function(){
+  var btn = document.getElementById('nav-toggle');
+  if(!btn) return;
+  var nav = btn.closest('nav');
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  var links = nav.querySelectorAll('.nav-menu a');
+  for(var i = 0; i < links.length; i++){
+    links[i].addEventListener('click', function(){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  }
 })();
 </script>
 </body>
