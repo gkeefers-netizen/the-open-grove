@@ -655,14 +655,19 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
       <button class="fchip" type="button" data-filter="norse" aria-pressed="false">Norse</button>
       <button class="fchip" type="button" data-filter="wiccan" aria-pressed="false">Wiccan</button>
       <button class="fchip" type="button" data-filter="celtic" aria-pressed="false">Celtic</button>
+      <button class="fchip" type="button" data-filter="hellenic" aria-pressed="false">Hellenic</button>
+      <button class="fchip" type="button" data-filter="kemetic" aria-pressed="false">Kemetic</button>
+      <button class="fchip" type="button" data-filter="irish" aria-pressed="false">Irish</button>
+      <button class="fchip" type="button" data-filter="roman" aria-pressed="false">Roman</button>
+      <button class="fchip" type="button" data-filter="slavic" aria-pressed="false">Slavic</button>
       <button class="fchip" type="button" data-filter="general" aria-pressed="false">General</button>
       <span class="filter-count" id="practice-count" aria-live="polite"></span>
     </div>
     <div class="filter-bar" role="group" aria-label="Filter practices by time and quiet" id="practice-quick" style="margin-top:6px">
       <span class="flabel">Also:</span>
       <button class="fchip" type="button" data-quick="all" aria-pressed="true">Any practice</button>
-      <button class="fchip" type="button" data-quick="under5" aria-pressed="false">Under 5 minutes</button>
-      <button class="fchip" type="button" data-quick="nosupplies" aria-pressed="false">No supplies needed</button>
+      <button class="fchip" type="button" data-quick="about5" aria-pressed="false">About 5 minutes</button>
+      <button class="fchip" type="button" data-quick="fewsupplies" aria-pressed="false">Few supplies</button>
       <button class="fchip" type="button" data-quick="quiet" aria-pressed="false">Can be done quietly</button>
     </div>
     <div class="practice-grid">
@@ -671,7 +676,7 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
         <figcaption>A whole altar can be a candle, a bowl of water, and things the earth gave you. Every recipe below starts from a table this simple.</figcaption>
       </figure>
       <div id="recipe-list">
-        <article class="recipe" data-traditions="general" data-quick="quiet">
+        <article class="recipe" data-traditions="general" data-quick="quiet about5">
           <div class="recipe-head"><div class="num">1</div><div><h3>Keep a small altar</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">General · all paths</span><span class="tag">Can be done quietly</span></div></div></div>
           <p class="lead">A shelf, a windowsill, a corner of a dresser. The altar isn't decoration — tending it for two minutes a day <em>is</em> the practice.</p>
           <h4>You'll need</h4>
@@ -687,8 +692,8 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
           <p class="close-line">Done when the spot feels claimed. Repeat daily; change the found object with the seasons.</p>
         </article>
 
-        <article class="recipe" data-traditions="celtic general">
-          <div class="recipe-head"><div class="num">2</div><div><h3>Learn your land — the sit-spot walk</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Celtic · Druidry</span><span class="tag">General</span></div></div></div>
+        <article class="recipe" data-traditions="celtic general" data-quick="about5 fewsupplies">
+          <div class="recipe-head"><div class="num">2</div><div><h3>Learn your land — the sit-spot walk</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Celtic · Druidry</span><span class="tag">General</span><span class="tag">Few supplies</span></div></div></div>
           <p class="lead">Druids begin with the land they're actually on. Walk the same short route and watch it change — paganism starts with paying attention to the earth under your feet.</p>
           <h4>You'll need</h4>
           <ul class="needs"><li>One short route you can repeat — a block, a garden, a park path</li><li>Your phone or a notebook for three quick notes</li><li>No headphones</li></ul>
@@ -702,7 +707,7 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
           <p class="close-line">Same route, once a week. In a year you'll know your land the way you know a friend's face.</p>
         </article>
 
-        <article class="recipe" data-traditions="norse general">
+        <article class="recipe" data-traditions="norse general" data-quick="about5">
           <div class="recipe-head"><div class="num">3</div><div><h3>Make an offering — a small blót<span class="pron">BLOHT</span></h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Norse · Heathen</span><span class="tag">General</span></div></div></div>
           <p class="lead">A gift for a gift — the oldest law of the grove. In Heathen practice this is a blót: food or drink given to gods, ancestors, or land spirits, and shared by the people present.</p>
           <h4>You'll need</h4>
@@ -718,7 +723,7 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
           <p class="close-line">Small and sincere beats grand and rare. Once a week is a strong rhythm.</p>
         </article>
 
-        <article class="recipe" data-traditions="general norse celtic">
+        <article class="recipe" data-traditions="general norse celtic" data-quick="about5">
           <div class="recipe-head"><div class="num">4</div><div><h3>Honor your dead</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">General · all paths</span><span class="tag">Norse</span><span class="tag">Celtic</span></div></div></div>
           <p class="lead">Nearly every pagan tradition on earth begins here — the ancestors are the oldest altar there is. Say their names, and they stay part of the household.</p>
           <h4>You'll need</h4>
@@ -733,7 +738,7 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
           <p class="close-line">One story per season is eight ancestors kept alive a year at any table.</p>
         </article>
 
-        <article class="recipe" data-traditions="wiccan general">
+        <article class="recipe" data-traditions="wiccan general" data-quick="about5">
           <div class="recipe-head"><div class="num">5</div><div><h3>Full-moon esbat<span class="pron">ESS-bat</span> — moon water &amp; one intention</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Wiccan</span><span class="tag">General</span></div></div></div>
           <p class="lead">An esbat is the Wiccan observance of the moon, usually at the full moon — the monthly counterpart to the eight solar sabbats. <a href="#t-esbat">The tracker at the top of this page</a> tells you the next one. This is its smallest honest form.</p>
           <h4>You'll need</h4>
@@ -748,8 +753,8 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
           <p class="close-line">Check the next esbat in the <a href="#t-esbat">today bar</a> above and put it on your calendar now, while you're thinking of it.</p>
         </article>
 
-        <article class="recipe" data-traditions="general wiccan celtic norse">
-          <div class="recipe-head"><div class="num">6</div><div><h3>Keep the turning year</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">General · all paths</span></div></div></div>
+        <article class="recipe" data-traditions="general wiccan celtic norse" data-quick="about5 fewsupplies">
+          <div class="recipe-head"><div class="num">6</div><div><h3>Keep the turning year</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">General · all paths</span><span class="tag">Few supplies</span></div></div></div>
           <p class="lead">Eight small observances a year will teach you the shape of the seasons better than any book. This recipe is how you set the next one up — five minutes now, a festival kept later.</p>
           <h4>You'll need</h4>
           <ul class="needs"><li><a href="#wheel">The Wheel of the Year</a>, above — and the next festival's date</li><li>Your calendar</li><li>One simple plan: a meal, a candle, or a sunset walk</li></ul>
@@ -761,6 +766,137 @@ footer a{min-height:48px;display:inline-flex;align-items:center}
             <li><strong>Tell one person (1 min).</strong> “I'm keeping Yule with a candle at dusk — join me?” Festivals grow by invitation.</li>
           </ol>
           <p class="close-line">That's the whole system: look ahead, write it down, keep it small, share it once.</p>
+        </article>
+        <article class="recipe" data-traditions="norse general" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">7</div><div><h3>Draw one rune for the day</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Norse · Heathen</span><span class="tag">General</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">One rune, drawn before the day gets going, is an old way to set the tone — not a fortune, just a word to carry. The <a href="#rune-card">rune draw at the top of this page</a> works the same way, if you have no set of your own.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>A rune set, or the rune draw at the top of this page</li><li>A flat surface</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Settle (1 min).</strong> Sit down, feet on the floor, three slow breaths. Let the day wait.</li>
+            <li><strong>Ask one question (1 min).</strong> One open question, in your head or aloud: “What does today need from me?” Keep it simple.</li>
+            <li><strong>Draw one rune (1 min).</strong> Reach into the bag without looking and pull one out — or draw one on the page above. Lay it face up.</li>
+            <li><strong>Look at it (1 min).</strong> Say the name, quietly or silently. Let one word come to mind — a picture, a memory. Don't chase meaning.</li>
+            <li><strong>Carry it (1 min).</strong> Set the rune where you'll see it — pocket, windowsill, shelf. That's the whole of it.</li>
+          </ol>
+          <p class="close-line">You don't need to know what it means. You just need to have looked.</p>
+        </article>
+        <article class="recipe" data-traditions="wiccan general" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">8</div><div><h3>Bless the hearth</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Wiccan</span><span class="tag">General</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">The kitchen is the hearth with cabinets around it — fire, water, and food in one room. A short pause at the sink or stove turns the next chore into something noticed.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>Your kitchen sink or stove</li><li>Your hands and running water</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Pause (1 min).</strong> Stop at the sink or stove before you start. Hands under the water, or on the counter. Feel the temperature.</li>
+            <li><strong>Name the work (1 min).</strong> Silently or aloud, name one thing this meal, wash, or chore will do for your home today — feed, warm, clean, keep.</li>
+            <li><strong>Do it slowly (2 min).</strong> Carry on with the task at half your usual speed. Notice the steam, the weight of the pan, the sound of the water.</li>
+            <li><strong>Close (1 min).</strong> Dry your hands, or turn the flame down. One breath. The work is the blessing.</li>
+          </ol>
+          <p class="close-line">Ordinary work, noticed, is still ordinary work — and that's enough.</p>
+        </article>
+        <article class="recipe" data-traditions="general" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">9</div><div><h3>Five things, noticed</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">General · all paths</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">A gratitude practice with no altar, no words, and nothing to buy — just five things, noticed on purpose, wherever you're sitting.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>Nothing — wherever you're sitting right now works</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Settle (1 min).</strong> Sit as you are. Feet down, shoulders down, one slow breath.</li>
+            <li><strong>See one thing (1 min).</strong> Pick one thing you can see. Notice its color, its shape, the light on it. Silently thank it for being there.</li>
+            <li><strong>Hear and feel (1 min).</strong> One sound, near or far. One thing you can feel — the chair under you, the air on your hands, the weight of your own body.</li>
+            <li><strong>Name one gift (1 min).</strong> Bring to mind one thing that isn't in the room — a person, a memory, a plan. Hold it for a breath.</li>
+            <li><strong>Open your eyes (1 min).</strong> If they were closed, open them. Nothing here needed fixing. It was just worth noticing.</li>
+          </ol>
+          <p class="close-line">Five things, noticed, is a whole practice. Do it at the kitchen table, on the bus, in the garden.</p>
+        </article>
+        <article class="recipe" data-traditions="hellenic" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">10</div><div><h3>A small libation</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Hellenic</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">In Greek household practice, a libation is a small pour of liquid given to the gods — Hestia first and last, since the hearth is where every offering begins and ends. Water is always enough.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>A small cup</li><li>A little water, wine, or juice</li><li>An outdoor spot, a plant, or a sink</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Fill the cup (1 min).</strong> A little water — a few spoonfuls is plenty. Small is the point.</li>
+            <li><strong>Stand and settle (1 min).</strong> Feet still, hands holding the cup. One slow breath.</li>
+            <li><strong>Name and pour (2 min).</strong> If you have a god in mind, name them, silently or aloud — Hestia first, as keeper of the hearth. Pour the liquid out slowly, onto soil, into a plant, or down the sink. Watch it go.</li>
+            <li><strong>Close (1 min).</strong> One more breath. “Thank you” — said or thought — and step away.</li>
+          </ol>
+          <p class="close-line">The pour is the offering. Nothing more is owed.</p>
+        </article>
+        <article class="recipe" data-traditions="kemetic" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">11</div><div><h3>Cool water for the Netjeru</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Kemetic</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">Water was the most basic offering in old Egypt — life in Egypt was the Nile, and the Nile was the gift. A morning pour of cool water to the Netjeru and the ancestors is the smallest honest form of it.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>A cup or small bowl</li><li>Clean, cool water</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Fill the cup (1 min).</strong> Cool water, a small amount. Face east, toward the rising sun.</li>
+            <li><strong>Settle (1 min).</strong> Stand quietly. Let your breath slow.</li>
+            <li><strong>Pour and name (2 min).</strong> Pour a little onto the ground or into a bowl. Speak the names of the gods and ancestors you're honoring — aloud or in your head. “Homage to you, Netjeru of Kemet.”</li>
+            <li><strong>Close (1 min).</strong> Pour the last of it and say, “May Ma'at<span class="pron">mah-AHT</span> be established. Dua<span class="pron">DOO-ah</span>.”</li>
+          </ol>
+          <p class="close-line">Dua — praise. The water is given, the day begins.</p>
+        </article>
+        <article class="recipe" data-traditions="irish" data-quick="about5 quiet">
+          <div class="recipe-head"><div class="num">12</div><div><h3>Light a candle for Brigid</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Irish</span><span class="tag">Can be done quietly</span></div></div></div>
+          <p class="lead">Brigid<span class="pron">BREE-jid</span>, daughter of the Dagda, is the Irish goddess of hearth, forge, and poetry — her flame at Kildare was kept for centuries. A candle and a bowl of water is the smallest way to honor her at home.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>A white or yellow candle in a safe, stable holder</li><li>A small bowl of water</li><li>A small offering — bread, honey, or milk</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Set the place (1 min).</strong> Candle, water, and offering on the hearth or a table. Light the candle — and never leave it burning unattended.</li>
+            <li><strong>Watch the flame (1 min).</strong> Sit and let your eyes rest on it. One slow breath.</li>
+            <li><strong>Speak her name (1 min).</strong> Say it aloud or silently: “Brigid, keeper of the hearth.” Thank her for the warmth of the house.</li>
+            <li><strong>Set the offering down (1 min).</strong> Bread, honey, or milk beside the flame. Sit a moment in the quiet.</li>
+            <li><strong>Close (1 min).</strong> A short thanks. Snuff the candle before you leave the room.</li>
+          </ol>
+          <p class="close-line">The flame is tended, the house remembered.</p>
+        </article>
+        <article class="recipe" data-traditions="roman" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">13</div><div><h3>Greet the Lares at the lararium</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Roman</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">Every Roman home kept a lararium<span class="pron">lah-RAH-ree-um</span> — a small shrine where the Lares<span class="pron">LAH-rays</span>, the household gods, and the Penates<span class="pron">peh-NAH-tays</span>, keepers of the pantry, were honored daily with a little wine, a little food, and a few words. A shelf and a small dish will do.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>A small cup of wine or water</li><li>A small portion of your meal — bread, fruit, or whatever you're eating</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Set it aside (1 min).</strong> Before you eat, put a small portion of your meal in a dish and pour a little wine or water into the cup.</li>
+            <li><strong>Stand at the shrine (1 min).</strong> At your lararium, or any quiet corner if you have none. Feet still, one slow breath.</li>
+            <li><strong>Pour and place (2 min).</strong> Pour the libation, set the food down, and greet the Lares and Penates by name, aloud or in your head. Thank them for the home and the table.</li>
+            <li><strong>Close (1 min).</strong> Sit quietly a moment, then eat — the meal is the rest of the rite.</li>
+          </ol>
+          <p class="close-line">The table is shared; the house remembers its own.</p>
+        </article>
+        <article class="recipe" data-traditions="slavic" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">14</div><div><h3>Leave a bite for the domovoy</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Slavic</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">In Slavic homes the domovoy — the house spirit, called Grandfather — lives behind the stove and keeps the household's tally of order and kindness. A crust of bread and a pinch of salt is the old way to feed him.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>A slice of bread</li><li>A pinch of salt</li><li>A spoonful of milk or porridge, if you have it</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Cut the bite (1 min).</strong> A small slice of bread, sprinkled with salt. A spoonful of milk or porridge on top, if there's any to hand.</li>
+            <li><strong>Set it by the stove (1 min).</strong> On a small plate near the stove or hearth — or a quiet kitchen corner. This is his place.</li>
+            <li><strong>Speak the greeting (1 min).</strong> Softly, or in your head: “Domovoy<span class="pron">doh-moh-VOY</span>, father, eat and drink, and let us live in peace.”</li>
+            <li><strong>Tidy one small thing (1 min).</strong> Straighten one thing in the kitchen — a dish put away, a counter wiped. Order is the offering he notices most.</li>
+            <li><strong>Step away (1 min).</strong> Sit quietly a moment with the kitchen. Then step away and leave the plate out overnight; clear it in the morning.</li>
+          </ol>
+          <p class="close-line">The bite is given; the house keeps its peace.</p>
+        </article>
+        <article class="recipe" data-traditions="celtic general" data-quick="about5 quiet fewsupplies">
+          <div class="recipe-head"><div class="num">15</div><div><h3>Roots and sky breath</h3><div class="recipe-meta"><span class="tag tag-time">About 5 minutes</span><span class="tag">Celtic · Druidry</span><span class="tag">General</span><span class="tag">Can be done quietly</span><span class="tag">Few supplies</span></div></div></div>
+          <p class="lead">Druids begin with the land they're actually on — and sometimes the land is just the floor under your feet. A short breath practice, roots down and sky above, for when the day has scattered you.</p>
+          <h4>You'll need</h4>
+          <ul class="needs"><li>Nothing — your feet and your breath</li></ul>
+          <h4>Steps</h4>
+          <ol class="steps">
+            <li><strong>Stand or sit (1 min).</strong> Feet flat on the floor, or sitting with both feet down. Hands loose at your sides.</li>
+            <li><strong>Feel the floor (1 min).</strong> Breathe normally. Notice the weight of your body where it meets the floor — feet, seat, back.</li>
+            <li><strong>Breathe down (1 min).</strong> With each breath out, let that weight settle a little more. No need to picture anything; the floor is doing the work.</li>
+            <li><strong>Breathe up (1 min).</strong> With each breath in, feel the air fill your chest — the sky above, coming in.</li>
+            <li><strong>Shake it out (1 min).</strong> Shake out your hands, roll your shoulders once, and carry on.</li>
+          </ol>
+          <p class="close-line">You were already here. This just caught up with it.</p>
         </article>
       </div>
     </div>
@@ -1457,8 +1593,8 @@ function wireFilters(barId, itemSelector, countId, noun){
   var countEl = document.getElementById('practice-count');
   var trad = 'all', quick = 'all';
   function quickLabel(q){
-    if (q === 'under5') return 'Under 5 minutes';
-    if (q === 'nosupplies') return 'No supplies needed';
+    if (q === 'about5') return 'About 5 minutes';
+    if (q === 'fewsupplies') return 'Few supplies';
     if (q === 'quiet') return 'Can be done quietly';
     return q;
   }
