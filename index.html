@@ -1196,7 +1196,7 @@ document.getElementById('quick-exit-float').addEventListener('click', quickExit)
     fetch('https://a.klaviyo.com/client/subscriptions/?company_id=XxCFrT', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'revision': '2024-10-15'},
-      body: JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:email,subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},custom_source:'Website weekly letter'},relationships:{list:{data:{type:'list',id:'VWn4Gd'}}}}})
+      body: JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:email}}},custom_source:'Website weekly letter'},relationships:{list:{data:{type:'list',id:'VWn4Gd'}}}}})
     }).then(function(res){
       if (!res.ok) throw new Error('subscribe failed');
       note.textContent = 'You\'re in — watch your inbox for the welcome letter.';
