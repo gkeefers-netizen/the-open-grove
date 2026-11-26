@@ -7,6 +7,15 @@
 <link rel="icon" href="data:," />
 <title>Wheel of the Year — The Open Grove</title>
 <meta name="description" content="The Wheel of the Year: eight festivals marking the turning seasons — solstices, equinoxes, and the old festivals near the cross-quarter days." />
+<meta property="og:title" content="Wheel of the Year — The Open Grove" />
+<meta property="og:description" content="The Wheel of the Year: eight festivals marking the turning seasons — solstices, equinoxes, and the old festivals near the cross-quarter days." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://the-open-grove.com/wheel.html" />
+<meta property="og:image" content="https://the-open-grove.com/images/hero-stone-circle.webp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Wheel of the Year — The Open Grove" />
+<meta name="twitter:description" content="The Wheel of the Year: eight festivals marking the turning seasons — solstices, equinoxes, and the old festivals near the cross-quarter days." />
+<link rel="canonical" href="https://the-open-grove.com/wheel.html" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J2MFKQN4EV"></script>
 <script>
@@ -396,14 +405,18 @@ html.hc .hero-glow,html.hc .hero-embers{display:none}
     <div class="nav-menu" id="nav-menu">
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="library/index.html">Library</a>
-        <a href="about.html">About</a>
         <a href="wheel.html">Wheel of the Year</a>
         <a href="wisdom.html">Wisdom &amp; Runes</a>
+        <a href="library/index.html">Library</a>
+        <a href="community.html">Community</a>
+        <a href="this-week.html">This Week</a>
+        <a href="ravens.html">Ravens</a>
         <a href="keepsakes.html">Keepsakes</a>
         <a href="share.html">Share a Recipe</a>
-        <a href="ravens.html#designs">Suggest a Design</a>
+        <a href="about.html">About</a>
+        <a href="policies.html">Policies</a>
+        <a href="shop.html">Shop</a>
+        <a href="#join">Join</a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAkGmgrnLDdnW2NTMyFmON5D89OcG5p64wi_QUcRXA9pnpcg/viewform" target="_blank" rel="noopener">Give feedback</a>
       </div>
       <div class="nav-actions">
@@ -451,6 +464,13 @@ html.hc .hero-glow,html.hc .hero-embers{display:none}
       </div>
       <article class="festival-panel" id="festival-panel" aria-live="polite"></article>
     </div>
+    <div class="festival-panel" id="moon-strip" style="margin-top:26px">
+      <h3>The moon this month</h3>
+      <p id="moon-now">—</p>
+      <ul id="moon-fulls"></ul>
+      <noscript><p>The moon dates are filled in by a small script on this page.</p></noscript>
+      <p>For today's rune, see <a href="wisdom.html">Wisdom &amp; Runes</a>.</p>
+    </div>
   </div>
 </section>
 </main>
@@ -459,7 +479,7 @@ html.hc .hero-glow,html.hc .hero-embers{display:none}
     <span><strong style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ink)">The Open Grove</strong> — a site for all pagans.</span>
     <span>Shop: <a href="https://opengrovegoods.etsy.com?utm_source=the-open-grove.com&amp;utm_medium=website&amp;utm_campaign=wheel" target="_blank" rel="noopener">OpenGroveGoods on Etsy</a></span>
     <span>Contact: <a href="mailto:hello@the-open-grove.com">hello@the-open-grove.com</a></span>
-    <span>Follow the grove: <a href="https://www.tiktok.com/@occulus72" target="_blank" rel="noopener">TikTok — the shop</a> · <a href="https://www.tiktok.com/@lauraofthegrove" target="_blank" rel="noopener">TikTok — Laura</a> · <a href="https://www.instagram.com/lauraofthegrove/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@OpenGroveGoods" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/LauraOfTheGrove" target="_blank" rel="noopener">X</a> · <a href="https://www.threads.net/@lauraofthegrove" target="_blank" rel="noopener">Threads</a></span>
+    <span>Follow the grove: <a href="https://www.tiktok.com/@occulus72" target="_blank" rel="noopener">TikTok — the shop</a> · <a href="https://www.tiktok.com/@lauraofthegrove" target="_blank" rel="noopener">TikTok — Laura</a> · <a href="https://www.instagram.com/lauraofthegrove/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.youtube.com/@OpenGroveGoods" target="_blank" rel="noopener">YouTube</a> · <a href="https://x.com/LauraOfTheGrove" target="_blank" rel="noopener">X</a> · <a href="https://www.threads.net/@lauraofthegrove" target="_blank" rel="noopener">Threads</a> · <a href="https://discord.gg/vcFPqbSbyd" target="_blank" rel="noopener">Discord — The Open Grove</a> · <a href="https://www.facebook.com/groups/2456535288212955" target="_blank" rel="noopener">Facebook group</a> · <a href="https://www.pinterest.com/gkeefers/" target="_blank" rel="noopener">Pinterest</a> · <a href="https://www.facebook.com/61596416278828/" target="_blank" rel="noopener">Facebook Page</a></span>
     <span><a href="policies.html#shipping">Shipping</a> · <a href="policies.html#returns">Returns</a> · <a href="policies.html#privacy">Privacy</a> · <a href="policies.html#accessibility">Accessibility</a> &middot; <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAkGmgrnLDdnW2NTMyFmON5D89OcG5p64wi_QUcRXA9pnpcg/viewform" target="_blank" rel="noopener">Give feedback</a> &middot; <a href="feedback-form.pdf">Prefer paper? Get the PDF</a></span>
     <span><a href="wheel.html">Festival dates</a> follow the hemisphere switch on the <a href="wheel.html">Wheel of the Year</a> page — Northern by default; south of the equator, choose Southern and the wheel turns by six months. <a href="index.html">Moon and season shown for today</a>, wherever you are reading. <a href="keepsakes.html">Keepsakes</a> are stored only in this browser.</span>
   </div>
@@ -616,6 +636,61 @@ function applyHemi(){
   if (n) n.addEventListener('click', function(){ if (HEMISPHERE !== 'north'){ HEMISPHERE = 'north'; storeHemi('north'); applyHemi(); } });
   if (s) s.addEventListener('click', function(){ if (HEMISPHERE !== 'south'){ HEMISPHERE = 'south'; storeHemi('south'); applyHemi(); } });
   applyHemi();
+})();
+
+/* ---------- Moon strip (same maths as index.html; Math.floor, not Math.round, for the full-moon count) ---------- */
+var SYNODIC = 29.530588853;
+var FULL_NAMES = ["Wolf Moon","Snow Moon","Worm Moon","Pink Moon","Flower Moon","Strawberry Moon","Buck Moon","Sturgeon Moon","Corn Moon","Hunter's Moon","Beaver Moon","Cold Moon"];
+function moonPhase(date){
+  var known = Date.UTC(2000, 0, 6, 18, 14) / 86400000;
+  var days = date.getTime()/86400000;
+  var age = ((days - known) % SYNODIC + SYNODIC) % SYNODIC;
+  var illum = Math.round((1 - Math.cos(2*Math.PI*age/SYNODIC))/2 * 100);
+  var name, emoji;
+  if (age < 1.85){ name='New Moon'; emoji='🌑'; }
+  else if (age < 7.38){ name='Waxing Crescent'; emoji='🌒'; }
+  else if (age < 9.23){ name='First Quarter'; emoji='🌓'; }
+  else if (age < 14.5){ name='Waxing Gibbous'; emoji='🌔'; }
+  else if (age < 16.61){ name='Full Moon'; emoji='🌕'; }
+  else if (age < 22.15){ name='Waning Gibbous'; emoji='🌖'; }
+  else if (age < 23.99){ name='Last Quarter'; emoji='🌗'; }
+  else { name='Waning Crescent'; emoji='🌘'; }
+  return { age: age, illum: illum, name: name, emoji: emoji };
+}
+function nextFullMoon(from){
+  var mp = moonPhase(from);
+  var targetAge = SYNODIC/2; /* ~14.765, center of full */
+  var delta = (targetAge - mp.age + SYNODIC) % SYNODIC;
+  /* If we are within the full-moon window and just past center, treat today as full */
+  var isFullToday = (mp.name === 'Full Moon');
+  var date = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+  var daysAway = isFullToday ? 0 : Math.max(1, Math.floor(delta));
+  if (!isFullToday) date.setDate(date.getDate() + daysAway);
+  var name = FULL_NAMES[date.getMonth()];
+  /* Blue Moon: a second full moon in the same calendar month */
+  var prevFull = new Date(date.getTime() - SYNODIC*86400000);
+  if (prevFull.getMonth() === date.getMonth() && prevFull.getFullYear() === date.getFullYear()) name = 'Blue Moon';
+  /* Harvest Moon: the full moon nearest the autumn equinox (Sep 22) */
+  var equinox = new Date(date.getFullYear(), 8, 22);
+  if (Math.abs(date - equinox) < SYNODIC/2*86400000) name = 'Harvest Moon';
+  return { date: date, daysAway: daysAway, name: name, isToday: isFullToday };
+}
+(function(){
+  var now = new Date();
+  var mp = moonPhase(now);
+  var nowEl = document.getElementById('moon-now');
+  if (nowEl) nowEl.textContent = mp.emoji + ' ' + mp.name + ' — about ' + mp.illum + '% lit · ' + mp.age.toFixed(1) + ' days into the cycle';
+  var list = document.getElementById('moon-fulls');
+  if (list){
+    var first = nextFullMoon(now);
+    /* Count the second from three days after the first, to step past the
+       full-moon window (about two days either side of full) so the same
+       full moon is not counted twice. */
+    var second = nextFullMoon(new Date(first.date.getTime() + 3*86400000));
+    list.innerHTML = [first, second].map(function(f){
+      return '<li>' + esc(f.name) + ' — ' + f.date.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric', year:'numeric' }) + '</li>';
+    }).join('');
+  }
 })();
 
 var CONTRAST_KEY = 'opengrove-contrast-v1';
