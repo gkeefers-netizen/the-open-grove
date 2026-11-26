@@ -415,7 +415,7 @@ html.hc .hero-glow,html.hc .hero-embers{display:none}
     <div class="sec-head">
       <div class="rule"></div>
       <h2>The Wheel of the Year</h2>
-      <p>Eight festivals mark the turning seasons — solstices, equinoxes, and the cross-quarter days between them. Not every pagan keeps all eight, and Heathens, Druids, and others keep their own calendars besides. But this wheel is the rhythm many of us share. Tap a festival to walk through its season. Dates below are for the Northern Hemisphere; south of the equator, the wheel turns six months opposite — use the hemisphere switch below to see your own dates.</p>
+      <p>Eight festivals mark the turning seasons — solstices, equinoxes, and the old festivals that fall *near* the cross-quarter days between them. Not every pagan keeps all eight, and Heathens, Druids, and others keep their own calendars besides. But this wheel is the rhythm many of us share. Tap a festival to walk through its season. Dates below are for the Northern Hemisphere; south of the equator, the wheel turns six months opposite — use the hemisphere switch below to see your own dates.</p>
     </div>
     <div class="seg" role="group" aria-label="Hemisphere for the Wheel of the Year" id="hemi-seg" style="margin-top:18px">
       <button type="button" id="hemi-n" aria-pressed="true">Northern Hemisphere</button>
@@ -476,24 +476,24 @@ document.getElementById('quick-exit-float').addEventListener('click', quickExit)
 
 /* ---------- Festivals (with pronunciations) ---------- */
 var FESTIVALS = [
- { name:"Samhain", pron:"SOW-in", dates:"Oct 31 – Nov 1", m:10, d:31, season:"The last harvest & the thinning veil",
-   meaning:"The final harvest is in, the cattle come down from summer pasture, and the year turns toward darkness. Across many traditions this is the feast of the dead — the night the veil between worlds is said to thin, and the ancestors are closest and most welcome.",
+ { name:"Samhain", pron:"SOW-in", dates:"Oct 31 – Nov 1", m:10, d:31, season:"The last harvest & the open mounds",
+   meaning:"The final harvest is in, the cattle come down from summer pasture, and the year turns toward darkness. Across many modern traditions this is the feast of the dead — the old stories say the boundary between this world and the Otherworld loosened that night, the mounds stood open, and the dead could come home. The 'thin veil' is the modern way of saying it.",
    honor:"The beloved dead, by name. Ancestors of blood, of heart, and of the traditions we carry.",
-   ways:["Set an extra place at supper — the 'dumb supper' — and eat one meal in memory and gratitude.","Put photographs of your dead where you can greet them, and tell one true story about each.","Leave food and drink out overnight for wandering spirits, as households have done for centuries.","Take stock of the year: what is finished, what must be let go into the dark."] },
+   ways:["Set an extra place at supper — the 'dumb supper' of modern practice — and eat one meal in memory and gratitude.","Put photographs of your dead where you can greet them, and tell one true story about each.","Leave food and drink out overnight for wandering spirits, as households have done for centuries.","Take stock of the year: what is finished, what must be let go into the dark."] },
  { name:"Yule", pron:"YOOL", dates:"Around Dec 21 · Winter Solstice", m:12, d:21, season:"The longest night & the returning light",
    meaning:"The sun stands still at its lowest point, and the longest night of the year gives way — by a breath, then by minutes — to returning light. Heathens keep twelve nights of Yule for gods and ancestors; many others light the dark in their own way. Nothing in the year turns more hopefully than this.",
    honor:"The returning sun, the ancestors, and — in Heathen practice — Odin the Yule-Father and the gods of winter and plenty.",
    ways:["Keep one flame, candle, or fire burning through the longest night, and greet the dawn.","Make oaths and plans for the new year at the table, in good company.","Bring evergreen into the house — pine, holly, fir — as a promise that life persists.","In Heathen homes: a Yule log, toasts in sumbel, and a plate set out for the ancestors."] },
  { name:"Imbolc", pron:"IM-bolk", dates:"Feb 1 – 2", m:2, d:1, season:"First stirrings under the snow",
-   meaning:"The ewes come into milk, the first snowdrops push up, and the light is visibly longer though the cold still rules. Imbolc belongs to Brigid — Celtic goddess and saint alike — keeper of the hearth fire, poetry, smithcraft, and healing wells.",
+   meaning:"The ewes come into milk, the first snowdrops push up, and the light is visibly longer though the cold still rules. Imbolc falls on St Brigid's Day, and modern pagans honour Brigid — goddess of poetry, smithcraft and healing — at it.",
    honor:"Brigid in all her forms, the hearth, and every small beginning that starts in the dark.",
    ways:["Light candles in every room at dusk to welcome the returning light — and Brigid to the house.","Weave or hang a Brigid's cross, and put out a cloth or ribbon overnight for her blessing.","Plan the year's garden and the year's work; bless the seeds, literal and otherwise.","Clean and re-dedicate the hearth and the altar for the year ahead."] },
  { name:"Ostara", pron:"oh-STAR-ah", dates:"Around Mar 20 · Spring Equinox", m:3, d:20, season:"Day and night in balance, spring ascendant",
-   meaning:"Light and dark stand equal, and from here the light wins. Eggs, hares, seeds, and green shoots are the old symbols of this turning — life insisting on itself. Many traditions take the name from Ēostre, a dawn goddess of the Germanic spring.",
+   meaning:"Light and dark stand equal, and from here the light wins. Seeds and green shoots are the old signs of this turning — life insisting on itself. The egg and the hare are later folk customs, German mostly, from the 1600s onward. Many traditions take the name from Ēostre, the goddess Bede names for the Anglo-Saxon spring month — the 'dawn' in her name is a linguist's reconstruction, not something Bede says about her.",
    honor:"The waking earth, dawn and new growth, and the balance point before the climb toward summer.",
    ways:["Plant something — a seed in soil is the whole sermon of this festival in one act.","Take a dawn walk and be outside for the exact balance of the day.","Color or bless eggs as symbols of the life packed into a shell.","Open the windows, clear the winter out of the house, and let the new season in."] },
  { name:"Beltane", pron:"BEL-tayn", dates:"May 1", m:5, d:1, season:"The fires of early summer",
-   meaning:"Summer begins in earnest. In old Ireland the cattle were driven between two bonfires for blessing and protection, every hearth-fire was rekindled from the Beltane flame, and the world was green, flowering, and frankly in love. It is the year's most joyful fire festival.",
+   meaning:"Summer begins in earnest. In old Ireland the cattle were driven between two bonfires for blessing and protection — and in later folk custom, every hearth-fire was doused and re-lit from the Beltane flame, and the world was green, flowering, and frankly in love. It is one of the year's great fire festivals.",
    honor:"The fertile earth, the blossoming hawthorn, the fires of protection, and love in all its forms.",
    ways:["Light a fire — bonfire, hearth, or a single candle — and let something old burn away in it.","Weave ribbons on a maypole, a tree, or a simple branch with the people you love.","Gather (responsibly) or buy flowers for the house; wear green.","Leave an offering for the spirits of the wild places — the Good Neighbors are near at Beltane, so be courteous."] },
  { name:"Litha", pron:"LEE-thah", dates:"Around Jun 21 · Summer Solstice", m:6, d:21, season:"The longest day, the sun at its height",
@@ -511,12 +511,15 @@ var FESTIVALS = [
 ];
 /* Southern Hemisphere dates: the same eight festivals, six months on — solstice/equinox labels stay true (Yule is still the winter solstice, in June). */
 var SOUTHERN_DATES = { "Samhain":"Apr 30 – May 1", "Yule":"Around Jun 21 · Winter Solstice", "Imbolc":"Aug 1 – 2", "Ostara":"Around Sep 22 · Spring Equinox", "Beltane":"Nov 1", "Litha":"Around Dec 21 · Summer Solstice", "Lughnasadh":"Feb 1", "Mabon":"Around Mar 20 · Autumn Equinox" };
+/* Southern day-of-month where it differs from the northern one, so the countdown agrees with the displayed dates (Ostara Sep 22, Mabon Mar 20). */
+var SOUTHERN_DAY = { "Ostara":22, "Mabon":20 };
 
 /* ---------- Hemisphere (Northern / Southern) — choice saved in this browser ---------- */
 var HEMI_KEY = 'opengrove-hemisphere-v1';
 var HEMISPHERE = 'north';
 try{ var _hemiSaved = localStorage.getItem(HEMI_KEY); if (_hemiSaved === 'south' || _hemiSaved === 'north') HEMISPHERE = _hemiSaved; }catch(e){}
 function hemiMonth(m){ return HEMISPHERE === 'south' ? ((m + 5) % 12) + 1 : m; }
+function festDay(f){ return HEMISPHERE === 'south' ? (SOUTHERN_DAY[f.name] || f.d) : f.d; }
 function festMonth(f){ return hemiMonth(f.m); }
 function festDates(f){ return HEMISPHERE === 'south' ? (SOUTHERN_DATES[f.name] || f.dates) : f.dates; }
 var WHEEL_ORDER = [1,2,3,4,5,6,7,0];
@@ -552,9 +555,9 @@ FESTIVALS.forEach(function(f, i){
 });
 function daysUntil(f, from){
   var y = from.getFullYear();
-  var target = new Date(y, festMonth(f)-1, f.d);
+  var target = new Date(y, festMonth(f)-1, festDay(f));
   var start = new Date(y, from.getMonth(), from.getDate());
-  if (target < start) target = new Date(y+1, festMonth(f)-1, f.d);
+  if (target < start) target = new Date(y+1, festMonth(f)-1, festDay(f));
   return Math.round((target - start)/86400000);
 }
 function lastPassedIndex(from){
@@ -562,7 +565,7 @@ function lastPassedIndex(from){
   var best = 0, bestTime = -Infinity;
   FESTIVALS.forEach(function(f, i){
     [from.getFullYear()-1, from.getFullYear()].forEach(function(y){
-      var t = new Date(y, festMonth(f)-1, f.d).getTime();
+      var t = new Date(y, festMonth(f)-1, festDay(f)).getTime();
       if (t <= start && t > bestTime){ bestTime = t; best = i; }
     });
   });

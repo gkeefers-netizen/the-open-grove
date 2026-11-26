@@ -649,19 +649,19 @@ document.getElementById('quick-exit-float').addEventListener('click', quickExit)
 /* ---------- Festivals (with pronunciations) ---------- */
 var FESTIVALS = [
  { name:"Samhain", pron:"SOW-in", dates:"Oct 31 – Nov 1", m:10, d:31, season:"The last harvest & the thinning veil",
-   meaning:"The final harvest is in, the cattle come down from summer pasture, and the year turns toward darkness. Across many traditions this is the feast of the dead — the night the veil between worlds is said to thin, and the ancestors are closest and most welcome.",
+   meaning:"The final harvest is in, the cattle come down from summer pasture, and the year turns toward darkness. Across many modern traditions this is the feast of the dead — the old stories say the boundary between this world and the Otherworld loosened that night, the mounds stood open, and the dead could come home. The 'thin veil' is the modern way of saying it.",
    honor:"The beloved dead, by name. Ancestors of blood, of heart, and of the traditions we carry.",
-   ways:["Set an extra place at supper — the 'dumb supper' — and eat one meal in memory and gratitude.","Put photographs of your dead where you can greet them, and tell one true story about each.","Leave food and drink out overnight for wandering spirits, as households have done for centuries.","Take stock of the year: what is finished, what must be let go into the dark."] },
+   ways:["Set an extra place at supper — the 'dumb supper' — and eat one meal in memory and gratitude.","Put photographs of your dead where you can greet them, and tell one true story about each.","Leave food and drink out overnight for wandering spirits, as households in the old folk custom did.","Take stock of the year: what is finished, what must be let go into the dark."] },
  { name:"Yule", pron:"YOOL", dates:"Around Dec 21 · Winter Solstice", m:12, d:21, season:"The longest night & the returning light",
-   meaning:"The sun stands still at its lowest point, and the longest night of the year gives way — by a breath, then by minutes — to returning light. Heathens keep twelve nights of Yule for gods and ancestors; many others light the dark in their own way. Nothing in the year turns more hopefully than this.",
-   honor:"The returning sun, the ancestors, and — in Heathen practice — Odin the Yule-Father and the gods of winter and plenty.",
+   meaning:"The sun stands still at its lowest point, and the longest night of the year gives way — by a breath, then by minutes — to returning light. Heathens today keep twelve nights of Yule for gods and ancestors; many others light the dark in their own way. Nothing in the year turns more hopefully than this.",
+   honor:"The returning sun, the ancestors, and — in Heathen practice — Odin as Jólnir, the Yule One, and the gods of winter and plenty.",
    ways:["Keep one flame, candle, or fire burning through the longest night, and greet the dawn.","Make oaths and plans for the new year at the table, in good company.","Bring evergreen into the house — pine, holly, fir — as a promise that life persists.","In Heathen homes: a Yule log, toasts in sumbel, and a plate set out for the ancestors."] },
  { name:"Imbolc", pron:"IM-bolk", dates:"Feb 1 – 2", m:2, d:1, season:"First stirrings under the snow",
-   meaning:"The ewes come into milk, the first snowdrops push up, and the light is visibly longer though the cold still rules. Imbolc belongs to Brigid — Celtic goddess and saint alike — keeper of the hearth fire, poetry, smithcraft, and healing wells.",
+   meaning:"The ewes come into milk, the first snowdrops push up, and the light is visibly longer though the cold still rules. Imbolc falls on St Brigid's Day, and modern pagans honour Brigid — goddess of poetry, smithcraft and healing — at it.",
    honor:"Brigid in all her forms, the hearth, and every small beginning that starts in the dark.",
    ways:["Light candles in every room at dusk to welcome the returning light — and Brigid to the house.","Weave or hang a Brigid's cross, and put out a cloth or ribbon overnight for her blessing.","Plan the year's garden and the year's work; bless the seeds, literal and otherwise.","Clean and re-dedicate the hearth and the altar for the year ahead."] },
  { name:"Ostara", pron:"oh-STAR-ah", dates:"Around Mar 20 · Spring Equinox", m:3, d:20, season:"Day and night in balance, spring ascendant",
-   meaning:"Light and dark stand equal, and from here the light wins. Eggs, hares, seeds, and green shoots are the old symbols of this turning — life insisting on itself. Many traditions take the name from Ēostre, a dawn goddess of the Germanic spring.",
+   meaning:"Light and dark stand equal, and from here the light wins. Seeds and green shoots are the old signs of this turning — life insisting on itself. The egg and the hare are later folk customs, German mostly, from the 1600s onward. Many traditions take the name from Ēostre, the goddess Bede names for the Anglo-Saxon spring month — the 'dawn' in her name is a linguist's reconstruction, not something Bede says about her.",
    honor:"The waking earth, dawn and new growth, and the balance point before the climb toward summer.",
    ways:["Plant something — a seed in soil is the whole sermon of this festival in one act.","Take a dawn walk and be outside for the exact balance of the day.","Color or bless eggs as symbols of the life packed into a shell.","Open the windows, clear the winter out of the house, and let the new season in."] },
  { name:"Beltane", pron:"BEL-tayn", dates:"May 1", m:5, d:1, season:"The fires of early summer",
@@ -731,7 +731,7 @@ function moonPhase(date){
   if (age < 1.85){ name='New Moon'; emoji='🌑'; }
   else if (age < 7.38){ name='Waxing Crescent'; emoji='🌒'; }
   else if (age < 9.23){ name='First Quarter'; emoji='🌓'; }
-  else if (age < 14.77){ name='Waxing Gibbous'; emoji='🌔'; }
+  else if (age < 14.5){ name='Waxing Gibbous'; emoji='🌔'; }
   else if (age < 16.61){ name='Full Moon'; emoji='🌕'; }
   else if (age < 22.15){ name='Waning Gibbous'; emoji='🌖'; }
   else if (age < 23.99){ name='Last Quarter'; emoji='🌗'; }
@@ -747,7 +747,14 @@ function nextFullMoon(from){
   var date = new Date(from.getFullYear(), from.getMonth(), from.getDate());
   var daysAway = isFullToday ? 0 : Math.max(1, Math.round(delta));
   if (!isFullToday) date.setDate(date.getDate() + daysAway);
-  return { date: date, daysAway: daysAway, name: FULL_NAMES[date.getMonth()], isToday: isFullToday };
+  var name = FULL_NAMES[date.getMonth()];
+  /* Blue Moon: a second full moon in the same calendar month */
+  var prevFull = new Date(date.getTime() - SYNODIC*86400000);
+  if (prevFull.getMonth() === date.getMonth() && prevFull.getFullYear() === date.getFullYear()) name = 'Blue Moon';
+  /* Harvest Moon: the full moon nearest the autumn equinox (Sep 22) */
+  var equinox = new Date(date.getFullYear(), 8, 22);
+  if (Math.abs(date - equinox) < SYNODIC/2*86400000) name = 'Harvest Moon';
+  return { date: date, daysAway: daysAway, name: name, isToday: isFullToday };
 }
 var MOON_NOW = moonPhase(new Date());
 var NEXT_FULL = nextFullMoon(new Date());
@@ -758,7 +765,8 @@ function fillToday(){
   var sd = new Date(now); if (HEMISPHERE === 'south') sd.setMonth(sd.getMonth() + 6);
   var yr = sd.getFullYear();
   var season = (sd >= new Date(yr,11,21) || sd < new Date(yr,2,20)) ? 'Deep winter approaches' :
-    sd < new Date(yr,5,21) ? 'Spring, in the old reckoning' :
+    sd < new Date(yr,4,1) ? 'Spring, in the old reckoning' :
+    sd < new Date(yr,5,21) ? 'Summer, in the old reckoning' :
     sd < new Date(yr,8,22) ? 'High summer, turning' : 'Autumn, the harvest half';
   document.getElementById('t-season').textContent = season;
   document.getElementById('t-moon').textContent = MOON_NOW.name;
@@ -817,11 +825,11 @@ function applyContrast(on){
 var VERSES = [
  { t:"All doorways, before going forward,\nshould be looked to;\nfor difficult it is to know where foes may sit within a dwelling.", n:"Hávamál 1", note:"Look before you step — in houses, in arguments, in life." },
  { t:"Cattle die, kinsmen die,\nthe self must also die;\nbut glory never dies,\nfor the man who is able to achieve it.", n:"Hávamál 76", note:"What outlives us is the name we earn by how we lived." },
- { t:"Cattle die, kinsmen die,\nthe self must also die;\nI know one thing which never dies:\nthe reputation of each dead man.", n:"Hávamál 77", note:"The most quoted verse in the poem — reputation is the only immortality on offer." },
+ { t:"Cattle die, kinsmen die,\nthe self must also die;\nI know one thing which never dies:\nthe reputation of each dead man.", n:"Hávamál 77", note:"One of the most quoted verses in the poem — reputation is the only immortality on offer." },
  { t:"The foolish man lies awake all night and worries about things;\nhe is tired when morning comes, and everything is just as bad as it was.", n:"Hávamál 23 (paraphrased)", note:"Anxiety at 3 a.m. fixes nothing. Rest is also a strategy." },
  { t:"A friend should be a friend to his friend, and repay gift for gift;\nlaughter for laughter let him give back, but falsehood for falsehood.", n:"Hávamál 42", note:"Reciprocity in one breath: match generosity with generosity, and don't be a fool for liars." },
  { t:"Even the road to a bad friend is long, though he live close by;\nbut the road to a good friend is short, though he live far away.", n:"Hávamál 34 (adapted)", note:"Distance is measured in welcome, not miles." },
- { t:"Better no prayer than too big an offering —\na gift always looks for a return.\nBetter no offering than too much sacrifice.", n:"Hávamál 145 (adapted)", note:"Give freely, but give in measure — obligation is not devotion." },
+ { t:"Better no prayer than too big an offering —\na gift always looks for a return.\nBetter no offering than too much sacrifice.", n:"Hávamál 145 (adapted)", note:"Give freely, but give in measure — obligation is not devotion. Numbering varies by edition — Bellows 146, Thorpe 147, Terry 145." },
  { t:"Fire is best among the sons of men,\nand the sight of the sun;\nhealth, if a man can keep it,\nand a life without shame.", n:"Hávamál 68 (adapted)", note:"The poem's short list of life's best things. Notice how plain they are." },
  { t:"A better burden may no man bear\nfor wanderings wide than wisdom;\nit is better than wealth on unknown ways,\nand in grief a refuge it gives.", n:"Hávamál 10", note:"Wisdom travels lighter than wealth — and holds up better in hard times." },
  { t:"Friends shall gladden each other\nwith arms and garments, as each for himself can see;\ngift-givers' friendships are longest found,\nif fair their fates may be.", n:"Hávamál 41", note:"Give first, give fairly — friendships kept by giving last longest." },

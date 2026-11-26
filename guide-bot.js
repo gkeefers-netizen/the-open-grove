@@ -550,7 +550,7 @@
       ]);
       return;
     }
-    if (/rune/.test(q)) { linkAnswer('The rune draw lives on the Wisdom & Runes page — one draw a day, with a verse to carry.', 'Draw a rune', 'wisdom'); return; }
+    if (/rune/.test(q)) { linkAnswer('The rune draw lives on the Wisdom & Runes page — draw a rune whenever you like, and carry its question with you. The daily verse lives on the homepage.', 'Draw a rune', 'wisdom'); return; }
     if (/wheel|festival|season|sabbat|imbolc|samhain|beltane|lughnasadh|mabon|ostara|equinox/.test(q)) { linkAnswer('The Wheel of the Year page follows the seasons and their festivals, one spoke at a time.', 'See the Wheel of the Year', 'wheel'); return; }
     if (/heathen|asatru|norse|viking/.test(q)) {
       addBot([

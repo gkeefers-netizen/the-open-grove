@@ -421,7 +421,7 @@ html.hc .hero-glow,html.hc .hero-embers{display:none}
     <div class="duo">
       <div class="tool-card" id="verse-card">
         <h3>Words of the High One</h3>
-        <p class="sub">From the Hávamál — the wisdom poem of Odin, carried in the Poetic Edda. Heathens open it daily; its counsel on guests, friendship, and reputation belongs to everyone. Three new verses joined the rotation this week — on wisdom, friendship, and the road. New to the poem? The <a href="library/reading.html">reading list</a> names the translations our Norse groups trust most.</p>
+        <p class="sub">From the Hávamál — the wisdom poem of Odin, carried in the Poetic Edda. Heathens open it daily; its counsel on guests, friendship, and reputation belongs to everyone. Three new verses joined the rotation — on wisdom, friendship, and the road. New to the poem? The <a href="library/reading.html">reading list</a> names the translations our Norse groups trust most.</p>
         <div class="verse-box">
           <blockquote id="verse-text"></blockquote>
           <div class="verse-src" id="verse-src"></div>
@@ -440,6 +440,7 @@ html.hc .hero-glow,html.hc .hero-embers{display:none}
           <div class="rune-empty">Your runes are still in the bag.<br>Draw when you're ready.</div>
         </div>
         <div class="rune-reading" id="rune-reading" aria-live="polite"></div>
+        <p class="sub">The keywords are the modern readers' meanings; the old rune poems say less, and plainer.</p>
         <div class="tool-actions">
           <div class="seg" role="group" aria-label="How many runes">
             <button type="button" id="seg-1" aria-pressed="true">One rune</button>
@@ -528,7 +529,12 @@ function nextFullMoon(from){
   var date = new Date(from.getFullYear(), from.getMonth(), from.getDate());
   var daysAway = isFullToday ? 0 : Math.max(1, Math.round(delta));
   if (!isFullToday) date.setDate(date.getDate() + daysAway);
-  return { date: date, daysAway: daysAway, name: FULL_NAMES[date.getMonth()], isToday: isFullToday };
+  /* A second full moon in one calendar month is a Blue Moon (e.g. May 2026: full moons May 1 and May 31) — check whether an earlier day this month was already full, using the same phase maths. Days within 3 days of this one are the same full moon (one full phase spans ~2 days), so only count a full day at least 4 days earlier. */
+  var isBlue = false;
+  for (var dd = 1; dd <= date.getDate() - 4; dd++){
+    if (moonPhase(new Date(date.getFullYear(), date.getMonth(), dd)).name === 'Full Moon'){ isBlue = true; break; }
+  }
+  return { date: date, daysAway: daysAway, name: isBlue ? "Blue Moon" : FULL_NAMES[date.getMonth()], isToday: isFullToday };
 }
 var MOON_NOW = moonPhase(new Date());
 var NEXT_FULL = nextFullMoon(new Date());
@@ -553,11 +559,11 @@ function applyContrast(on){
 
 /* ---------- Hávamál verses ---------- */
 var VERSES = [
- { t:"All doorways, before going forward,\nshould be looked to;\nfor difficult it is to know where foes may sit within a dwelling.", n:"Hávamál 1", note:"Look before you step — in houses, in arguments, in life." },
- { t:"Cattle die, kinsmen die,\nthe self must also die;\nbut glory never dies,\nfor the man who is able to achieve it.", n:"Hávamál 76", note:"What outlives us is the name we earn by how we lived." },
- { t:"Cattle die, kinsmen die,\nthe self must also die;\nI know one thing which never dies:\nthe reputation of each dead man.", n:"Hávamál 77", note:"The most quoted verse in the poem — reputation is the only immortality on offer." },
+ { t:"Within the gates ere a man shall go,\n(Full warily let him watch,)\nFull long let him look about him;\nFor little he knows where a foe may lurk,\nAnd sit in the seats within.", n:"Hávamál 1", note:"Look before you step — in houses, in arguments, in life." },
+ { t:"Cattle die, and kinsmen die,\nAnd so one dies one's self;\nBut a noble name will never die,\nIf good renown one gets.", n:"Hávamál 76", note:"What outlives us is the name we earn by how we lived." },
+ { t:"Cattle die, and kinsmen die,\nAnd so one dies one's self;\nOne thing I know that never dies,\nThe fame of a dead man's deeds.", n:"Hávamál 77", note:"one of the most quoted verses in the poem — reputation is the only immortality on offer." },
  { t:"The foolish man lies awake all night and worries about things;\nhe is tired when morning comes, and everything is just as bad as it was.", n:"Hávamál 23 (paraphrased)", note:"Anxiety at 3 a.m. fixes nothing. Rest is also a strategy." },
- { t:"A friend should be a friend to his friend, and repay gift for gift;\nlaughter for laughter let him give back, but falsehood for falsehood.", n:"Hávamál 42", note:"Reciprocity in one breath: match generosity with generosity, and don't be a fool for liars." },
+ { t:"To his friend a man a friend shall prove,\nAnd gifts with gifts requite;\nBut men shall mocking with mockery answer,\nAnd fraud with falsehood meet.", n:"Hávamál 42", note:"Reciprocity in one breath: match generosity with generosity, and don't be a fool for liars." },
  { t:"Even the road to a bad friend is long, though he live close by;\nbut the road to a good friend is short, though he live far away.", n:"Hávamál 34 (adapted)", note:"Distance is measured in welcome, not miles." },
  { t:"Better no prayer than too big an offering —\na gift always looks for a return.\nBetter no offering than too much sacrifice.", n:"Hávamál 145 (adapted)", note:"Give freely, but give in measure — obligation is not devotion." },
  { t:"Fire is best among the sons of men,\nand the sight of the sun;\nhealth, if a man can keep it,\nand a life without shame.", n:"Hávamál 68 (adapted)", note:"The poem's short list of life's best things. Notice how plain they are." },
@@ -586,25 +592,26 @@ document.getElementById('verse-btn').addEventListener('click', function(){
 var RUNES = [
  ['ᚠ','Fehu','wealth · cattle · earned prosperity','What you have earned and how it moves. Wealth kept still rots; wealth passed hand to hand blesses.','Where does my prosperity need to flow?'],
  ['ᚢ','Uruz','strength · wild vitality · the aurochs','Raw, untamed strength — health, will, and the life-force that won’t be domesticated.','What in me is still wild and strong?'],
- ['ᚦ','Thurisaz','thorn · defense · the reactive force','A thorn on the branch: protection that pricks. Pause before you act; a hasty strike draws your own blood.','Where do I need a boundary, not a battle?'],
+ ['ᚦ','Thurisaz','giant · thorn · defense','A thorn on the branch: protection that pricks. Pause before you act; a hasty strike draws your own blood.','Where do I need a boundary, not a battle?'],
  ['ᚨ','Ansuz','signal · breath · Odin\'s wisdom','The rune of the word — messages, counsel, inspiration on the breath. Listen twice as much as you speak today.','What is trying to be said — and heard?'],
  ['ᚱ','Raidho','riding · the journey · right order','The wheel turning on a true axle. Movement, travel, and a life kept rolling in rhythm.','What is my next right step, not my final one?'],
- ['ᚲ','Kenaz','torch · knowledge · the hearth-fire','A torch in a dark hall: knowledge that lights a room for everyone, not just the holder.','What have I learned that I should share?'],
+ ['ᚲ','Kenaz','torch (the Norse poems say \'sore\') · knowledge · the hearth-fire','A torch in a dark hall: knowledge that lights a room for everyone, not just the holder.','What have I learned that I should share?'],
  ['ᚷ','Gebo','gift · exchange · the crossed hands','Gift for gift, the oldest law of the grove. Generosity without ledger, obligation without resentment.','What gift is mine to give — or to finally receive?'],
+ ['ᚹ','Wunjo','joy · harmony · belonging','The joy of the hall after the work is done — belonging, harmony, and a wish fulfilled without striving.','Where do I already belong, and have I let myself feel it?'],
  ['ᚺ','Hagalaz','hail · disruption · weather you don\'t choose','Hail flattens the field it feeds. Disruption is not punishment; it is the year making room.','What is the storm actually clearing for me?'],
  ['ᚾ','Nauthiz','need · friction · the fire struck from need','Need-fire: warmth born of rubbing two sticks together. Constraint is a teacher with rough hands.','What is my need trying to teach me?'],
  ['ᛁ','Isa','ice · stillness · the frozen lake','Ice is beautiful and stops the boats. This is a season for waiting, not forcing. Stillness is not failure.','What would improve if I simply waited?'],
  ['ᛃ','Jera','harvest · the year · what ripens in time','You reap in season, not on demand. Effort put in honestly comes back around the wheel.','What did I plant that is quietly ripening?'],
  ['ᛇ','Eihwaz','yew · endurance · the tree of life and death','The yew bends, endures winter, and outlives kingdoms. Flexibility in service of staying rooted.','Where do I bend so I do not break?'],
- ['ᛈ','Perthro','the dice cup · mystery · chance','Some of the game is skill and some is the throw. Perthro is the part you cannot control — play it with a light grip.','What outcome must I release to the dice?'],
+ ['ᛈ','Perthro','the dice cup? · mystery · chance. The old meaning is lost; \'dice cup\' is the leading guess','Some of the game is skill and some is the throw. Perthro is the part you cannot control — play it with a light grip.','What outcome must I release to the dice?'],
  ['ᛉ','Algiz','protection · the elk-sedge · reaching up','Arms raised to the gods and roots in the earth: the posture of guarded openness.','How do I stay open and protected at once?'],
- ['ᛊ','Sowilo','sun · wholeness · clear victory','The sun-wheel: energy, clarity, and success that comes from alignment rather than force.','Where is the light already pointing?'],
+ ['ᛊ','Sowilo','sun · wholeness · clear victory','The sun: energy, clarity, and success that comes from alignment rather than force.','Where is the light already pointing?'],
  ['ᛏ','Tiwaz','honor · justice · Tyr\'s hand','Tyr put his hand in the wolf\'s mouth and paid the price of the pledge. Integrity costs. Pay it anyway.','What does honor require of me here — exactly?'],
  ['ᛒ','Berkana','birch · renewal · new growth','The first tree back after the ice. Gentle beginnings, recovery, and growth that starts small and pale-green.','What tender thing is starting, if I protect it?'],
  ['ᛖ','Ehwaz','horse · partnership · trust in motion','Two horses, one harness. Progress through trust — with a partner, a team, or your own divided self.','Who moves well beside me, and have I said so?'],
  ['ᛗ','Mannaz','mankind · community · the self among others','No one is self-made. Mannaz is the rune of the web of people that holds — and sometimes tests — us.','Which relationship needs my attention this week?'],
  ['ᛚ','Laguz','water · flow · intuition','The lake and the river: what flows finds its way around stone. Feelings are data; dreams are weather reports.','What am I feeling that I keep arguing with?'],
- ['ᛜ','Ingwaz','seed · potential · Ing\'s hearth','A seed in the dark earth, complete and waiting. Gestation is not delay — it is where the power gathers.','What should I keep private until it\'s grown?'],
+ ['ᛜ','Ingwaz','the god Ing · seed · stored potential','A seed in the dark earth, complete and waiting. Gestation is not delay — it is where the power gathers.','What should I keep private until it\'s grown?'],
  ['ᛞ','Dagaz','dawn · breakthrough · the new day','Dawn after a real night: clarity, awakening, and the turn from darkness you can trust because you waited for it.','What does this new light let me finally see?'],
  ['ᛟ','Othala','heritage · home · what is inherited','The homestead and the inheritance — land, values, and the best of what the dead handed down. Keep what serves; release the rest.','What did I inherit that is truly worth keeping?']
 ];
